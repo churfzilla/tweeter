@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
     <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
     <link rel="stylesheet" href="/styles/new-tweet.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/tweets.css" type="text/css" />
     <!-- External JS -->
     <script type="text/javascript" src="/vendor/jquery-2.2.3.min.js"></script>
 
@@ -27,8 +28,6 @@
     </nav>
 
     <!-- Page-specific (main) content here -->
-    <div>
-    </div>
 
     <main class="container">
       <section class="new-tweet">
@@ -39,6 +38,24 @@
             <span class="counter">140</span>
           </form>
       </section>
+
+      <section class="tweets">
+      <container id="tweets-container">
+         <article class="tweet">
+           <header>
+             <img class="avatar" src="https://avatars1.githubusercontent.com/u/19158376?v=3&s=466" >
+             <text class="username">Chad Bruhaug</text>
+             <text class="handle">@churfzilla</text>
+           </header>
+           <p class="tweet-content"> Test tweeting some stuff. Testing if text gets kinds long here.
+           or even multiple lines </p>
+           <footer>
+             <text class="date">tweeted 1 minute ago</text>
+           </footer>
+         </article>
+      </section>
+
+
 
     </main>
     <script type="text/javascript" src="/scripts/app.js"></script>

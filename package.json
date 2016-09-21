@@ -9,7 +9,7 @@
     "local": "./node_modules/.bin/nodemon --watch server -e js server/index.js",
     "seed": "node server/db/seed.js"
   },
-  "author": "Lighthouse Labs",
+  "author": "Chad @ Lighthouse Labs",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.15.2",

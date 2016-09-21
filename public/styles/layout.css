@@ -1,35 +1,89 @@
-/*
- * http://www.paulirish.com/2012/box-sizing-border-box-ftw/
- * https://css-tricks.com/international-box-sizing-awareness-day/
- * Do not modify these two selectors, please
- */
 html {
   box-sizing: border-box;
 }
 *, *:before, *:after {
   box-sizing: inherit;
 }
-
-/*
- * Global layout stuff
- */
-
-
 body {
+  font-family: "Roboto Condensed", sans-serif;
   margin: 0;
+  padding-top: 80px;
   color: #244751;
   background-color: #eee;
-  font-family: 'Roboto Condensed', sans-serif;
 }
 
-main {
-  margin: 0px auto;
-  width: 50%;
-  background-color: white;
-  padding-top: 10%;
-  display: table;
+main.container {
+  background-color: #fff;
+  margin: 0 auto;
+  width: 40%;
+  overflow: hidden;
+  padding: 2em 2em 0 2em;
 }
-/*
- * Additional CSS can be defined below or in other CSS files, as per instructions
- */
 
+@media screen and (max-width: 768px) {
+  main.container {
+    width: 100%;
+  }
+}
+
+.tweet {
+  border: 1px solid #ccc;
+  border-radius: 0.375em;
+  margin-bottom: 2em;
+  opacity: 0.6;
+  transition: all 0.3s ease 0s;
+}
+
+.tweet:hover {
+  opacity: 1;
+}
+
+.tweet header {
+  background-color: #eee;
+  padding: 0.5em;
+  overflow: hidden;
+}
+
+.tweet header img {
+  border-radius: 0.375em;
+  float: left;
+  width: 48px;
+  height: 48px;
+}
+
+.tweet header h3 {
+  display: inline-block;
+  float: left;
+  margin: 0 0 0 0.5em;
+}
+
+.tweet header span {
+  float: right;
+  color: #777;
+}
+.tweet section {
+  padding: 1em;
+  width: 45%;
+}
+
+.tweet footer {
+  border-top: 1px solid #ccc;
+  padding: 0.5em;
+  font-size: 80%;
+}
+
+.tweet footer div {
+  opacity: 0;
+  display: inline-block;
+  float: right;
+  color: #00a087;
+  transition: all 0.3s ease 0s;
+}
+
+.tweet footer div i {
+  margin-left: 0.2em;
+}
+
+.tweet:hover footer div {
+  opacity: 1;
+}

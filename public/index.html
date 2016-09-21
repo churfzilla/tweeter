@@ -2,63 +2,47 @@
 <html lang="en">
   <head>
     <!-- Meta Information -->
-    <title>Tweeter - Home Page</title>
-
+    <title>Chad's Tweeter - Home Page</title>
     <!-- External CSS -->
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+    <!-- Font Awesome -->
+    <script src="https://use.fontawesome.com/e083c2459d.js"></script>
+    <!-- Roboto Condensed -->
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,700,700i" rel="stylesheet">
     <!-- App CSS -->
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
     <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
     <link rel="stylesheet" href="/styles/new-tweet.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/tweets.css" type="text/css" />
-    <!-- External JS -->
-    <script type="text/javascript" src="/vendor/jquery-2.2.3.min.js"></script>
-
-    <!-- App JS -->
-
   </head>
 
   <body>
-
     <!-- Top nav bar (fixed) -->
     <nav id="nav-bar">
-      <img class="logo" src="/images/bird.png" >
+      <img class="logo" src="/images/bird.png">
       <span class="header">Tweeter</span>
     </nav>
-
     <!-- Page-specific (main) content here -->
-
     <main class="container">
       <section class="new-tweet">
         <h2>Compose Tweet</h2>
-          <form action="http://127.0.0.1:8080/tweets" method="post">
-            <textarea name="text" placeholder="What are you humming about?"></textarea>
-            <input type="submit" value="Tweet">
-            <span class="counter">140</span>
-          </form>
+        <form method="POST" action="/tweets">
+          <textarea name="text" rows="3" placeholder="What are you humming about?"></textarea>
+          <input type="submit" value="Tweet">
+          <span class="counter">140</span>
+        </form>
       </section>
-
-      <section class="tweets">
-      <container id="tweets-container">
-         <article class="tweet">
-           <header>
-             <img class="avatar" src="https://avatars1.githubusercontent.com/u/19158376?v=3&s=466" >
-             <text class="username">Chad Bruhaug</text>
-             <text class="handle">@churfzilla</text>
-           </header>
-           <p class="tweet-content"> Test tweeting some stuff. Testing if text gets kinds long here.
-           or even multiple lines </p>
-           <footer>
-             <text class="date">tweeted 1 minute ago</text>
-           </footer>
-         </article>
-      </section>
-
-
-
+      <section id="tweets-container"></section>
     </main>
+    <script type="text/javascript" src="/vendor/jquery-2.2.3.min.js"></script>
+
+    <!-- http://momentjs.com/  Helps with date counter -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.0/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.0/locale/en-ca.js"></script>
+
+    <!-- App JS -->
     <script type="text/javascript" src="/scripts/app.js"></script>
     <script type="text/javascript" src="/scripts/composer-char-counter.js"></script>
+
   </body>
 </html>
+

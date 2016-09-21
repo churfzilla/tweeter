@@ -1,6 +1,6 @@
 
 .new-tweet {
-  margin: 2em;
+  margin-bottom: 2em;
   border: 1px solid #ccc;
   border-radius: 8px;
   padding: 0em 0.5em 0.5em;
@@ -12,11 +12,6 @@
   border-bottom: 1px solid;
 }
 
-.counter {
-  float: right;
-  font-style: italic;
-}
-
 .new-tweet form textarea {
   padding: 0.5em;
   width: 100%;
@@ -24,10 +19,15 @@
 }
 
 .new-tweet form {
-  display: block;
+  display:block;
+}
+
+.counter {
+  float: right;
+  font-style: italic;
 }
 
 .redText {
-  color: red;
+  color:red;
 }
 

@@ -1,5 +1,41 @@
 $(function () {
 
+const TWEETLENGTHMAX = 140;
+const WARNING_CLASS = "redText";
+
+let $textArea = $( ".new-tweet form textarea" );
+let $counter = $($textArea.siblings(".counter")[0]);
+let updateCounter = function() {
+  let tweetLength = this.value.length;
+  $counter.text(TWEETLENGTHMAX - tweetLength);
+  if (tweetLength > TWEETLENGTHMAX){
+    $counter.addClass(WARNING_CLASS);
+  } else {
+    $counter.removeClass(WARNING_CLASS);
+  }
+};
+$textArea.on("input", updateCounter);
+  // var MAX_CHAR_COUNT = 140;
+
+  // // Character counter
+  // $('section.new-tweet form textarea').on('input', function (e) {
+  //   var counter = $(this).siblings('span.counter');
+  //   var charCount = $(this).val().length;
+  //   counter.text(TWEETLENGTHMAX - charCount);
+  //   counter.css('color', charCount > TWEETLENGTHMAX ? 'red' : 'inherit');
+  // });
+
+// Load tweets from database -------------
+  function loadTweets(cb) {
+    $.ajax({
+      method: 'get',
+      url: '/tweets',
+      dataType: 'json',
+      success: cb
+    });
+  }
+
+// Creates the Tweet element in the DOM -----------------------------
   const createTweetElement = function createTweetElement(tweet) {
     var $tweet = $('<article>').addClass('tweet');
     var $tweetHeader = $('<header>').appendTo($tweet);
@@ -38,44 +74,50 @@ $(function () {
     return $tweet;
   }
 
-  $('#new-tweet').on('submit', function (event) {
-    event.preventDefault();
-    const theForm = $(this);
-    $.ajax({
-      url: theForm.attr('action'),
-      method: theForm.attr('method'),
-      data: theForm.serialize(),
-      dataType: 'json',
-      success: function () {
-        createTweetElement();
-      }
-    });
-  });
-
-  const renderTweets = function renderTweets(tweets) {
-    tweets.sort(function (a, b) {
-      return b.created_at - a.created_at;
-    });
+  // render all the tweets
+  function renderTweets(tweets) {
     tweets.forEach(function (tweet) {
       $('#tweets-container').append(createTweetElement(tweet));
     });
   }
 
-  const loadTweets = () => {
-  // Reads the tweets from the database and renders to the website
-    $.get('/tweets')
-      .then(renderTweets)
-      .then(() => {
-        $('#new-tweet').val('');
-      })
-  }
-    const validateForm = () => {
-      const tweetLength = $('.new-tweet form textarea').val().length;
-      if (tweetLength > 140) {
-        return false;
-      } else {
-        return true;
-      }
+  // New tweet form submission
+  $('section.new-tweet form').on('submit', function (e) {
+    e.preventDefault();
+    var form = $(this);
+    validateTweet(form);
+  });
+
+  // Validate tweet form submission and send if valid
+  function validateTweet(form) {
+    var text = form.children('textarea[name=text]').val();
+    var err = form.parent().children('div.error-container');
+
+    if (text === '') {
+      alert('Nothing to say? Then kick rocks!');
+      return false;
+    } else if (text.length > TWEETLENGTHMAX) {
+      alert('Gear down big-rig, you have written too much');
+      return false;
     }
-  loadTweets();
+
+    $.ajax({
+        method: form.attr('method'),
+        url: form.attr('action'),
+        dataType: 'json',
+        data: form.serialize(),
+        success: function () {
+          loadTweets(function (tweets) {
+            $('#tweets-container').prepend(createTweetElement(tweets[0]));
+            err.text('');
+            form.children('textarea[name=text]').val('');
+            form.children('span.counter').text(TWEETLENGTHMAX).css('color', 'inherit');
+          });
+        }
+      });
+    return true;
+  }
+
+  loadTweets(renderTweets);
+
 });

@@ -15,15 +15,6 @@ let updateCounter = function() {
   }
 };
 $textArea.on("input", updateCounter);
-  // var MAX_CHAR_COUNT = 140;
-
-  // // Character counter
-  // $('section.new-tweet form textarea').on('input', function (e) {
-  //   var counter = $(this).siblings('span.counter');
-  //   var charCount = $(this).val().length;
-  //   counter.text(TWEETLENGTHMAX - charCount);
-  //   counter.css('color', charCount > TWEETLENGTHMAX ? 'red' : 'inherit');
-  // });
 
 // Load tweets from database -------------
   function loadTweets(cb) {
@@ -74,21 +65,18 @@ $textArea.on("input", updateCounter);
     return $tweet;
   }
 
-  // render all the tweets
   function renderTweets(tweets) {
     tweets.forEach(function (tweet) {
       $('#tweets-container').append(createTweetElement(tweet));
     });
   }
 
-  // New tweet form submission
   $('section.new-tweet form').on('submit', function (e) {
     e.preventDefault();
     var form = $(this);
     validateTweet(form);
   });
 
-  // Validate tweet form submission and send if valid
   function validateTweet(form) {
     var text = form.children('textarea[name=text]').val();
     var err = form.parent().children('div.error-container');
@@ -118,6 +106,24 @@ $textArea.on("input", updateCounter);
     return true;
   }
 
+    $( "#nav-bar .compose" ).click(function() {
+      $( "section.new-tweet" ).slideToggle( "slow", function() {
+        $.fn.setCursorPosition = function(pos) {
+          this.each(function(index, elem) {
+            if (elem.setSelectionRange) {
+              elem.setSelectionRange(pos, pos);
+            } else if (elem.createTextRange) {
+                var range = elem.createTextRange();
+                range.collapse(true);
+                range.moveEnd('character', pos);
+                range.moveStart('character', pos);
+                range.select();
+            }
+          });
+          return this;
+        };
+        $('.new-tweet form textarea').setCursorPosition(0);
+      });
+    });
   loadTweets(renderTweets);
-
 });

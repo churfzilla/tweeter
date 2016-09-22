@@ -14,10 +14,14 @@ body {
 
 main.container {
   background-color: #fff;
-  margin: 0 auto;
+  margin: 30px auto;
   width: 40%;
   overflow: hidden;
   padding: 2em 2em 0 2em;
+}
+
+.container .new-tweet {
+  display: none;
 }
 
 @media screen and (max-width: 768px) {

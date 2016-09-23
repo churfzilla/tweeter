@@ -92,3 +92,8 @@ main.container {
 .tweet:hover footer div {
   opacity: 1;
 }
+
+/* SNIPPETS */
+.pointer{
+  cursor:;
+}

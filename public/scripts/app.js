@@ -1,5 +1,39 @@
 $(function () {
 
+//Logout hidden until logged in
+  $('#logout').hide();
+
+  const getCookie = (name) => {
+    let value = "; " + document.cookie;
+    let parts = value.split("; " + name + "=");
+    if (parts.length === 2) return parts.pop().split(";").shift();
+  }
+
+
+  if(getCookie("username")) {
+    $('#login-form').hide();
+
+    $('#logout').show();
+
+    $('.new-tweet form textarea').show();
+
+    $('#login-display')
+    .append("You are logged in as: ")
+    .append(getCookie("username"));
+  }
+
+
+  if(!getCookie("username")) {
+    $('#login-form').show();
+
+    $('#logout').hide();
+    $('.new-tweet form textarea').hide();
+
+    $('#login-display')
+    .append("You are not logged in!")
+  }
+
+
 const TWEETLENGTHMAX = 140;
 const WARNING_CLASS = "redText";
 

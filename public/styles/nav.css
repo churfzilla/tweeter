@@ -16,7 +16,6 @@
 }
 
 #nav-bar .header {
-  display: block;
   float: left;
   font-size: 300%;
   line-height: 80px;
@@ -35,5 +34,39 @@
 
 #nav-bar .compose:hover {
   background-color: white;
+  color: black;
+}
+
+#login-button {
+  padding: 5px 5px;
+  background-color: #E6F5F3;
+  border-style: solid black;
+  border-width: 1px;
+  border-radius: 5px;
+  color: #00a087;
+  font-size: 20px;
+  margin: 20px;
+}
+
+#logout{
+  float: right;
+  padding: 5px 5px;
+  background-color: #E6F5F3;
+  border-style: solid black;
+  border-width: 1px;
+  border-radius: 5px;
+  color: #00a087;
+  font-size: 20px;
+  margin: 20px;
+}
+
+#login-form {
+  float: right;
+  height: 30px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#login-display {
   color: black;
 }

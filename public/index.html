@@ -20,7 +20,15 @@
     <nav id="nav-bar">
       <img class="logo" src="/images/bird.png">
       <span class="header">Tweeter</span>
-      <span class="compose pointer"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Compose</span>
+        <form name="login-form" id="login-form" action="/login" method="POST" >
+          <input type="text" id="login" name="username" placeholder="Enter username" required></textarea>
+          <button id="login-button" type="submit" value="login">Login</button>
+        </form>
+        <form name="logout-form" action="/logout" method="POST">
+          <button id="logout" type="click" value="logout">Logout</button>
+        </form>
+
+      <span class="compose pointer"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i>Compose</span>
     </nav>
     <!-- Page-specific (main) content here -->
     <main class="container">
